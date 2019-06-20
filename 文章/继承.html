@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content=",,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="说明1234567891011121314151617181920212223所有的大写字母都是类或对象，小写字母表示属性或方法。FOO:&amp;#123; isLoading, _data, render(), _switch() &amp;#125;   这表示一个FOO对象，isLoading、_data是它的属性，render()、_switch()是它的方法，加下划线表示私有。A -&amp;gt; B">
+<meta name="keywords" content="iOS,面向对象">
+<meta property="og:type" content="website">
+<meta property="og:title" content="跳出面向对象思想学习笔记">
+<meta property="og:url" content="http://yoursite.com/文章/继承.html">
+<meta property="og:site_name" content="geeklyc">
+<meta property="og:description" content="说明1234567891011121314151617181920212223所有的大写字母都是类或对象，小写字母表示属性或方法。FOO:&amp;#123; isLoading, _data, render(), _switch() &amp;#125;   这表示一个FOO对象，isLoading、_data是它的属性，render()、_switch()是它的方法，加下划线表示私有。A -&amp;gt; B">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-04T07:10:50.418Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跳出面向对象思想学习笔记">
+<meta name="twitter:description" content="说明1234567891011121314151617181920212223所有的大写字母都是类或对象，小写字母表示属性或方法。FOO:&amp;#123; isLoading, _data, render(), _switch() &amp;#125;   这表示一个FOO对象，isLoading、_data是它的属性，render()、_switch()是它的方法，加下划线表示私有。A -&amp;gt; B">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/文章/继承.html">
+
+
+
+
+
+  <title>跳出面向对象思想学习笔记 | geeklyc</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5ae29c1ef3e0f7335ae0824058e00e64";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">geeklyc</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">追求</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">跳出面向对象思想学习笔记</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">所有的大写字母都是类或对象，小写字母表示属性或方法。</span><br><span class="line"></span><br><span class="line">FOO:&#123; isLoading, _data, render(), _switch() &#125;   这表示一个FOO对象，isLoading、_data是它的属性，render()、_switch()是它的方法，加下划线表示私有。</span><br><span class="line"></span><br><span class="line">A -&gt; B                                          这表示从A派生出了B，A是父类。</span><br><span class="line"></span><br><span class="line">A -&gt; B:&#123; [a, b, c(), d()], e, f() &#125;             []里面是父类的东西，e、f()是派生类的东西</span><br><span class="line"></span><br><span class="line">B:&#123; [ A ], e, f() &#125;                             省略了对父类的描述，用类名A代替，其他同上</span><br><span class="line"></span><br><span class="line">B:&#123; [ A ], e, f(), @c() &#125;                       省略了对父类的描述，函数前加@表示重载了父类的方法。</span><br><span class="line"></span><br><span class="line">B:&#123; [ A,D ], e, f() &#125;                           多继承，B继承了A和D</span><br><span class="line"></span><br><span class="line">B&lt;protocol&gt;                                     符合某个protocol接口的对象。</span><br><span class="line"></span><br><span class="line">&lt;protocol&gt;:&#123;foo(), bar&#125;                         protocol这个接口中包含foo()这个方法，bar这个属性。</span><br><span class="line"></span><br><span class="line">foo(A, int)                                     foo这个函数，接收A类和int类型作为参数。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">^ 表示他们是同一类</span><br><span class="line">^^ 表示他们同种同类</span><br></pre></td></tr></table></figure>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h3 id="继承三大要点"><a href="#继承三大要点" class="headerlink" title="继承三大要点"></a>继承三大要点</h3><ol>
+<li>父类只是给子类提供服务，并不涉及子类的业务逻辑</li>
+<li>层级关系明显，功能划分清晰，父类和子类各做各的</li>
+<li>父类的所有变化，都需要在子类中体现，也就说此时耦合已经成为一种需求</li>
+</ol>
+<p>采用继承(不好)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HOME_SEARCH_BAR:&#123; textField, search(), init(), initWithStyle() &#125;</span><br><span class="line">PAGE_SEARCH_BAR:&#123; [ HOME_SEARCH_BAR ], overlay, prompt() &#125;</span><br><span class="line">LOCAL_SEARCH_BAR:&#123; [ HOME_SEARCH_BAR ], @search() &#125;</span><br></pre></td></tr></table></figure></p>
+<p>采用组合(好)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;search_protocol&gt;:&#123;search()&#125;</span><br><span class="line"></span><br><span class="line">SEARCH_LOGIC&lt;search_protocol&gt;</span><br><span class="line"></span><br><span class="line">SEARCH_BAR:&#123;textField, SEARCH_LOGIC&lt;search_protocol&gt;&#125;</span><br><span class="line"></span><br><span class="line">HOME_SEARCH_BAR:&#123;SearchBar1, SearchLogic1&#125;</span><br><span class="line">PAGE_SEARCH_BAR:&#123;SearchBar2, SearchLogic1&#125;</span><br><span class="line">LOCAL_SEARCH_BAR:&#123;SearchBar2, SearchLogic2&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：当继承超过2层的时候，就需要好好考虑继承这个方案</strong></p>
+<p><strong>不到万不得已，不要用继承，优先组合</strong></p>
+<h3 id="精彩评论"><a href="#精彩评论" class="headerlink" title="精彩评论"></a>精彩评论</h3><ol>
+<li>继承的本质是什么？</li>
+</ol>
+<ol start="2">
+<li>项目中出现了BaseViewController:来管理基本的属性；NetworkViewController:处理网络业请求回调方法;MenuListViewController:具有菜单的VC;WebViewController:WebView相关的VC;整个继承关系是这样子的 BaseViewController-&gt;NetworkViewController-&gt;MenuListViewController-&gt;WebViewController;现在问题来了，比如在一个具体的VC中需要用到WebViewController但是其实不需要NetworkViewController的，有的是需要NetworkController的，我看博主建议的是组合，我希望博主能给出一个指点我怎么来处理这款的架构。</li>
+</ol>
+<p>解答：把Network、MenuList、WebView的东西单独拎出来做成三个Mananger，其它的ViewController需要什么功能，就把哪个Mananger放进去</p>
+<ol start="3">
+<li>假如有两个ViewController上面有一个相同的tableview和一个bottomView<br>然后各带一些不同的逻辑。是不是就算如此也不应该抽出tableView和 bottomView来做一个父ViewController？<br>我的意思也是想问是否为了后期的扩展和可维护性，看起来多么简单直接的继承也不应实现，而是只继承uiviewcontroller并分到两个类里写</li>
+</ol>
+<p>解答：是的，继承关系很讲究父类对子类的服务关系，如果两者服务关系微弱或者压根不存在，就不建议用继承。</p>
+<ol start="4">
+<li>构建一个项目的时候，是否需要派生一个UIViewController UINavigationController的子类</li>
+</ol>
+<p>解答：不需要，完全不建议这么做。</p>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><h3 id="采用多态的时候可能会有下面四种情况"><a href="#采用多态的时候可能会有下面四种情况" class="headerlink" title="采用多态的时候可能会有下面四种情况"></a>采用多态的时候可能会有下面四种情况</h3><ol>
+<li>父类有部分public的方法是不需要的，也不允许子类覆重的</li>
+<li>父类有一些特别的方法是必须子类去覆重的，在父类的方法其实是个空方法</li>
+<li>父类有一些方法是可选覆重的，一旦覆重，则以子类为准</li>
+<li>父类有一些方法即便被覆重，父类原方法还是要执行的</li>
+</ol>
+<p>解决方案<br>面向接口编程(Interface Oriented Programming, IOP)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;ManagerInterface&gt; : APIName()                我们先定义一个ManagerInterface接口，这个接口里面含有原本需要被覆重的方法。</span><br><span class="line">&lt;Interceptor&gt; : willRun(), didRun()         我们再定义一个Interceptor的接口，它用来做拦截器。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BaseManager.child&lt;ManagerInterface&gt;         在BaseController里面添加一个property，叫做child，这就要求这个child必须要满足&lt;ManagerInterface&gt;&lt;/ManagerInterface&gt;这个接口，但是BaseManager不需要满足&lt;ManagerInterface&gt;这个接口。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BaseManager.init() &#123;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    self.child = self                       在init的时候把child设置成自己</span><br><span class="line"></span><br><span class="line">    # 如果语言支持反射，那么我们可以这么写：</span><br><span class="line">    if self.child implemented &lt;ManagerInterface&gt; &#123;</span><br><span class="line">        self.child = self</span><br><span class="line">    &#125;</span><br><span class="line">    # 如上的写法就能够保证我们的子类能够基于这些接口有对应的实现</span><br><span class="line"></span><br><span class="line">    self.interceptor = self                 # interceptor可以是自己，也可以在初始化的时候设为别的对象，这个都可以根据需求不同而决定。</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BaseManager.run() &#123;</span><br><span class="line"></span><br><span class="line">    self.interceptor.willRun()</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    apiName = self.child.APIName()          # 原本是self.APIName(),然后这个方法是需要子类覆重的，现在可以改为self.child.APIName()了，就不需要覆重了。</span><br><span class="line">    request with apiName</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    self.interceptor.didRun()</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>将子类与可能被子类引入的不相关逻辑剥离开来，提高了子类的可重用性，降低了迁移时可能的耦合</li>
+<li>接口实际上是子类头上的金箍，规范了子类哪些必须实现，哪些可选实现。哪些不在接口定义的方法列表里的父类方法，事实上就是不建议覆重的方法</li>
+</ol>
+<h3 id="什么时候用多态？"><a href="#什么时候用多态？" class="headerlink" title="什么时候用多态？"></a>什么时候用多态？</h3><ol>
+<li>如果引入多态之后导致对象角色不够单纯，那就不应当引入多态，如果引入多态之后依旧是单纯角色，那就可以引入多态</li>
+<li>如果要覆重的方法是角色业务的其中一个组成部分，例如split()和resort(),那么最好不要用多态的方案，应该使用IOP，因为在外界调用的时候其实并不需要通过多态来满足定制化的需求</li>
+</ol>
+<h3 id="何时引入接入点？"><a href="#何时引入接入点？" class="headerlink" title="何时引入接入点？"></a>何时引入接入点？</h3><ol>
+<li>分清楚角色，保证角色单纯的情况下可以引入多态</li>
+<li>被覆重的方法是否需要被外界使用，还是只是父类运行时需要子类通过覆重提供中间数据的，如果是只要子类通过覆重提供中间数据的，一律应当采用IOP而不是多态</li>
+</ol>
+<h3 id="何时采用覆重"><a href="#何时采用覆重" class="headerlink" title="何时采用覆重"></a>何时采用覆重</h3><ol>
+<li>覆重的方法本身是跟逻辑密切相关的，不要在覆重方法里做跟这个方法本意不想关的事情</li>
+<li>如果要覆重一系列的方法，那么就要考虑角色问题和外界是否需要调用的问题，这些方法是不是这个对象的角色应当承担的任务</li>
+</ol>
+<h3 id="精彩评论-1"><a href="#精彩评论-1" class="headerlink" title="精彩评论"></a>精彩评论</h3><p>N/A</p>
+<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><h3 id="将数据结构和函数放在一起是否真的合理？"><a href="#将数据结构和函数放在一起是否真的合理？" class="headerlink" title="将数据结构和函数放在一起是否真的合理？"></a>将数据结构和函数放在一起是否真的合理？</h3><p>数据部分就是数据部分，执行部分就是执行部分，不同类的东西放在一起是不合适的</p>
+<h3 id="是否所有的东西都需要对象化？"><a href="#是否所有的东西都需要对象化？" class="headerlink" title="是否所有的东西都需要对象化？"></a>是否所有的东西都需要对象化？</h3><p>我们已经有函数作为黑盒了，拿着数据塞到黑盒里就够了</p>
+<h3 id="为什么面向对象会如此流行？"><a href="#为什么面向对象会如此流行？" class="headerlink" title="为什么面向对象会如此流行？"></a>为什么面向对象会如此流行？</h3><ol>
+<li>它能够非常好地进行代码复用</li>
+<li>它能够非常方便地应对复杂代码</li>
+<li>在进行程序设计时，面向对象更加符合程序员的直觉</li>
+</ol>
+<p>面向对象是在架构设计时非常好的思想，但如果只是简单映射到程序实现上来，引入的缺点会让我们得不偿失</p>
+<h3 id="精彩评论-2"><a href="#精彩评论-2" class="headerlink" title="精彩评论"></a>精彩评论</h3><p>N/A</p>
+<p><a href="https://github.com/geeklyc/ArchitectureDemo/tree/master/JZYIObject" target="_blank" rel="noopener">Demo</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://casatwy.com/tiao-chu-mian-xiang-dui-xiang-si-xiang-yi-ji-cheng.html" target="_blank" rel="noopener">跳出面向对象思想(一) 继承</a></p>
+<p><a href="https://casatwy.com/tiao-chu-mian-xiang-dui-xiang-si-xiang-er-duo-tai.html" target="_blank" rel="noopener">跳出面向对象思想(二) 多态</a></p>
+<p><a href="https://casatwy.com/tiao-chu-mian-xiang-dui-xiang-si-xiang-san-feng-zhuang.html" target="_blank" rel="noopener">跳出面向对象思想(三) 封装</a></p>
+<p><a href="https://www.raywenderlich.com/2830-how-to-make-a-gesture-driven-to-do-list-app-like-clear-part-3-3" target="_blank" rel="noopener">如何制作一个手势驱动的待办事项列表应用程序，如清除：第3/3部分</a></p>
+<p><a href="https://casatwy.com/iosying-yong-jia-gou-tan-kai-pian.html" target="_blank" rel="noopener">iOS应用架构谈 开篇</a><br><a href="https://casatwy.com/iosying-yong-jia-gou-tan-viewceng-de-zu-zhi-he-diao-yong-fang-an.html" target="_blank" rel="noopener">iOS应用架构谈 view层的组织和调用方案</a><br><a href="https://casatwy.com/iosying-yong-jia-gou-tan-wang-luo-ceng-she-ji-fang-an.html" target="_blank" rel="noopener">iOS应用架构谈 网络层设计方案</a><br><a href="https://casatwy.com/iosying-yong-jia-gou-tan-ben-di-chi-jiu-hua-fang-an-ji-dong-tai-bu-shu.html" target="_blank" rel="noopener">iOS应用架构谈 本地持久化方案及动态部署</a><br><a href="https://casatwy.com/iOS-Modulization.html" target="_blank" rel="noopener">iOS应用架构谈 组件化方案</a></p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/headicon.jpeg" alt="geeklyc">
+            
+              <p class="site-author-name" itemprop="name">geeklyc</p>
+              <p class="site-description motion-element" itemprop="description">geeklyc</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number"></span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承三大要点"><span class="nav-number">1.</span> <span class="nav-text">继承三大要点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精彩评论"><span class="nav-number">2.</span> <span class="nav-text">精彩评论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多态"><span class="nav-number"></span> <span class="nav-text">多态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#采用多态的时候可能会有下面四种情况"><span class="nav-number">1.</span> <span class="nav-text">采用多态的时候可能会有下面四种情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候用多态？"><span class="nav-number">2.</span> <span class="nav-text">什么时候用多态？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#何时引入接入点？"><span class="nav-number">3.</span> <span class="nav-text">何时引入接入点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#何时采用覆重"><span class="nav-number">4.</span> <span class="nav-text">何时采用覆重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精彩评论-1"><span class="nav-number">5.</span> <span class="nav-text">精彩评论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#封装"><span class="nav-number"></span> <span class="nav-text">封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将数据结构和函数放在一起是否真的合理？"><span class="nav-number">1.</span> <span class="nav-text">将数据结构和函数放在一起是否真的合理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#是否所有的东西都需要对象化？"><span class="nav-number">2.</span> <span class="nav-text">是否所有的东西都需要对象化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么面向对象会如此流行？"><span class="nav-number">3.</span> <span class="nav-text">为什么面向对象会如此流行？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精彩评论-2"><span class="nav-number">4.</span> <span class="nav-text">精彩评论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text">参考</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">geeklyc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'piUf1dhjji5IyYAjLpwdW2lV-gzGzoHsz',
+        appKey: 'TNDtJ6nYf05B6vdrsrllI5QO',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

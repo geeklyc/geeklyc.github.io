@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="geeklyc">
+<meta name="description" content="通过Homebrew来安装Node和Watchman Node1brew install node 检查node版本为v8.3以上1node -v Watchman1brew install watchman 设置npm镜像，加速后续过程 12npm config set registry https://registry.npm.taobao.org --globalnpm config set">
 <meta name="keywords" content="geeklyc">
 <meta property="og:type" content="website">
-<meta property="og:title" content="geeklyc">
-<meta property="og:url" content="http://yoursite.com/categories/工具/index.html">
+<meta property="og:title" content="ReactNative搭建及HelloWord">
+<meta property="og:url" content="http://yoursite.com/文章/ReactNative搭建及HelloWord.html">
 <meta property="og:site_name" content="geeklyc">
-<meta property="og:description" content="geeklyc">
+<meta property="og:description" content="通过Homebrew来安装Node和Watchman Node1brew install node 检查node版本为v8.3以上1node -v Watchman1brew install watchman 设置npm镜像，加速后续过程 12npm config set registry https://registry.npm.taobao.org --globalnpm config set">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-26T01:55:24.206Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="geeklyc">
-<meta name="twitter:description" content="geeklyc">
+<meta name="twitter:title" content="ReactNative搭建及HelloWord">
+<meta name="twitter:description" content="通过Homebrew来安装Node和Watchman Node1brew install node 检查node版本为v8.3以上1node -v Watchman1brew install watchman 设置npm镜像，加速后续过程 12npm config set registry https://registry.npm.taobao.org --globalnpm config set">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/工具/">
+  <link rel="canonical" href="http://yoursite.com/文章/ReactNative搭建及HelloWord.html">
 
 
 
 
 
-  <title>Category: 工具 | geeklyc</title>
+  <title>ReactNative搭建及HelloWord | geeklyc</title>
   
 
 
@@ -154,7 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,53 +259,49 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>工具<small>Category</small>
-        </h1>
-      </div>
+	<h1 class="post-title" itemprop="name headline">ReactNative搭建及HelloWord</h1>
+
+
+
+</header>
 
       
+      
+      
+      <div class="post-body">
         
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/03/08/建立博客/" itemprop="url">
-              
-                <span itemprop="name">Hexo搭建个人博客</span>
-              
-            </a>
-        
-      </h2>
+          <p>通过Homebrew来安装Node和Watchman</p>
+<p>Node<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure></p>
+<p>检查node版本为v8.3以上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure></p>
+<p>Watchman<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install watchman</span><br></pre></td></tr></table></figure></p>
+<p>设置npm镜像，加速后续过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org --global</span><br><span class="line">npm config set disturl https://npm.taobao.org/dist --global</span><br></pre></td></tr></table></figure>
+<p>Yarn、React Native的命令行工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yarn react-native-cli</span><br></pre></td></tr></table></figure></p>
+<p>React Native 的命令行工具用于执行创建、初始化、更新项目、运行打包服务（packager）等任务</p>
+<p>设置Yarn镜像源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn config set registry https://registry.npm.taobao.org --global</span><br><span class="line">yarn config set disturl https://npm.taobao.org/dist --global</span><br></pre></td></tr></table></figure></p>
+<p>安装完 yarn 之后就可以用 yarn 代替 npm 了，例如用<code>yarn</code>代替<code>npm install</code>命令，用<code>yarn add</code> 某第三方库名代替<code>npm install 某第三方库名</code>。</p>
+<h1 id="创建新项目"><a href="#创建新项目" class="headerlink" title="创建新项目"></a>创建新项目</h1><p>React Native 0.45及以上需要配置boost等几个第三方编译库<br>方式一<br><a href="http://bbs.reactnative.cn/topic/4301/ios-rn-0-45%E4%BB%A5%E4%B8%8A%E7%89%88%E6%9C%AC%E6%89%80%E9%9C%80%E7%9A%84%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BC%96%E8%AF%91%E5%BA%93-boost%E7%AD%89" target="_blank" rel="noopener">国内下载说明</a><br><a href="https://github.com/facebook/react-native/blob/0.59-stable/scripts/ios-install-third-party.sh" target="_blank" rel="noopener">对应版本需要的库s说明</a></p>
+<p>将第对应版本需要的三方库放置到<code>~/.rncache</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 井号表示注释，不要复制井号开头的句子</span><br><span class="line"></span><br><span class="line"># 进入~目录，即用户目录</span><br><span class="line">cd ~   </span><br><span class="line"></span><br><span class="line"># 创建目录，如果已经存在就不用创建了</span><br><span class="line">mkdir .rncache</span><br><span class="line"></span><br><span class="line"># 复制文件</span><br><span class="line">cp ~/Downloads/boost_1_63_0.tar.gz ~/.rncache/ </span><br><span class="line"></span><br><span class="line">全部复制完成后，就可以开始init新的RN项目，或者删掉已有项目的node_modules重新npm install再run-ios。</span><br></pre></td></tr></table></figure></p>
+<p>方式二<br>执行脚本，需要翻墙<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">下载脚本执行 sh ios-install-third-party.sh</span><br><span class="line">https://github.com/facebook/react-native/blob/0.59-stable/scripts/ios-install-third-party.sh</span><br></pre></td></tr></table></figure></p>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-08T10:01:45+08:00" content="2019-03-08">
-          03-08
-        </time>
+        
       </div>
-
-    </header>
-  </article>
-
-
+      
+      
       
     </div>
-
+    
+    
+    
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -312,6 +309,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -332,8 +336,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -395,6 +408,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建新项目"><span class="nav-number">1.</span> <span class="nav-text">创建新项目</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -535,6 +564,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

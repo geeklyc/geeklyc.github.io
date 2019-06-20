@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Observable - 产生事件 Observer - 响应事件 Operator - 创建变化组合事件 Disposable - 管理绑定（订阅）的生命周期 Schedulers - 线程队列调配  Observable - 可被监听的序列Single 是 Observable 的另外一个版本。不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事">
+<meta name="keywords" content="geeklyc">
+<meta property="og:type" content="website">
+<meta property="og:title" content="geeklyc">
+<meta property="og:url" content="http://yoursite.com/文章/- [Observable](httpsbeeth0ven.html">
+<meta property="og:site_name" content="geeklyc">
+<meta property="og:description" content="Observable - 产生事件 Observer - 响应事件 Operator - 创建变化组合事件 Disposable - 管理绑定（订阅）的生命周期 Schedulers - 线程队列调配  Observable - 可被监听的序列Single 是 Observable 的另外一个版本。不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-04T12:02:28.853Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="geeklyc">
+<meta name="twitter:description" content="Observable - 产生事件 Observer - 响应事件 Operator - 创建变化组合事件 Disposable - 管理绑定（订阅）的生命周期 Schedulers - 线程队列调配  Observable - 可被监听的序列Single 是 Observable 的另外一个版本。不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/文章/- [Observable](httpsbeeth0ven.html">
+
+
+
+
+
+  <title> | geeklyc</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5ae29c1ef3e0f7335ae0824058e00e64";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">geeklyc</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">追求</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <ul>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/rxswift_core/observable.html" target="_blank" rel="noopener">Observable</a> - 产生事件</li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/rxswift_core/observer.html" target="_blank" rel="noopener">Observer</a> - 响应事件</li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/rxswift_core/operator.html" target="_blank" rel="noopener">Operator</a> - 创建变化组合事件</li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/rxswift_core/disposable.html" target="_blank" rel="noopener">Disposable</a> - 管理绑定（订阅）的生命周期</li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/rxswift_core/schedulers.html" target="_blank" rel="noopener">Schedulers</a> - 线程队列调配</li>
+</ul>
+<h1 id="Observable-可被监听的序列"><a href="#Observable-可被监听的序列" class="headerlink" title="Observable - 可被监听的序列"></a>Observable - 可被监听的序列</h1><p><strong>Single</strong> 是 <code>Observable</code> 的另外一个版本。不像 <code>Observable</code> 可以发出多个元素，它要么只能发出一个元素，要么产生一个 <code>error</code> 事件。</p>
+<ul>
+<li>发出一个元素，或一个 <code>error</code> 事件</li>
+<li>不会共享状态变化</li>
+</ul>
+<p>一个比较常见的例子就是执行 HTTP 请求，然后返回一个<strong>应答</strong>或<strong>错误</strong>。不过你也可以用 <strong>Single</strong> 来描述任何只有一个元素的序列。</p>
+<p><strong>Completable</strong> 是 <code>Observable</code> 的另外一个版本。不像 <code>Observable</code> 可以发出多个元素，它要么只能产生一个 <code>completed</code> 事件，要么产生一个 <code>error</code> 事件。</p>
+<ul>
+<li>发出零个元素</li>
+<li>发出一个 <code>completed</code> 事件或者一个 <code>error</code> 事件</li>
+<li>不会共享状态变化</li>
+</ul>
+<p><strong>Completable</strong> 适用于那种你只关心任务是否完成，而不需要在意任务返回值的情况。它和 <code>Observable&lt;Void&gt;</code> 有点相似。</p>
+<p><strong>Maybe</strong> 是 <code>Observable</code> 的另外一个版本。它介于 <a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/rxswift_core/observable/single.html" target="_blank" rel="noopener">Single</a> 和 <a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/rxswift_core/observable/completable.html" target="_blank" rel="noopener">Completable</a> 之间，它要么只能发出一个元素，要么产生一个 <code>completed</code> 事件，要么产生一个 <code>error</code> 事件。</p>
+<ul>
+<li>发出一个元素或者一个 <code>completed</code> 事件或者一个 <code>error</code> 事件</li>
+<li>不会共享状态变化</li>
+</ul>
+<p>如果你遇到那种可能需要发出一个元素，又可能不需要发出时，就可以使用 <strong>Maybe</strong>。</p>
+<p><strong>Driver（司机？）</strong> 是一个精心准备的特征序列。它主要是为了简化 UI 层的代码。不过如果你遇到的序列具有以下特征，你也可以使用它：</p>
+<ul>
+<li>不会产生 <code>error</code> 事件</li>
+<li>一定在 <code>MainScheduler</code> 监听（主线程监听）</li>
+<li>共享状态变化</li>
+</ul>
+<p>这些都是驱动 UI 的序列所具有的特征。</p>
+<p><strong>ControlEvent</strong> 专门用于描述 <strong>UI</strong> 控件所产生的事件，它具有以下特征：</p>
+<ul>
+<li>不会产生 <code>error</code> 事件</li>
+<li>一定在 <code>MainScheduler</code> 订阅（主线程订阅）</li>
+<li>一定在 <code>MainScheduler</code> 监听（主线程监听）</li>
+<li>共享状态变化</li>
+</ul>
+<h1 id="Observer-观察者"><a href="#Observer-观察者" class="headerlink" title="Observer - 观察者"></a>Observer - 观察者</h1><p><strong>AnyObserver</strong> 可以用来描叙任意一种观察者。</p>
+<p><strong>Binder</strong> 主要有以下两个特征：</p>
+<ul>
+<li>不会处理错误事件</li>
+<li>确保绑定都是在给定 <a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/rxswift_core/schedulers.html" target="_blank" rel="noopener">Scheduler</a> 上执行（默认 <strong>MainScheduler</strong>）</li>
+</ul>
+<p>一旦产生错误事件，在调试环境下将执行 <code>fatalError</code>，在发布环境下将打印错误信息。</p>
+<h1 id="Observable-amp-Observer-既是可被监听的序列也是观察者"><a href="#Observable-amp-Observer-既是可被监听的序列也是观察者" class="headerlink" title="Observable &amp; Observer 既是可被监听的序列也是观察者"></a>Observable &amp; Observer 既是可被监听的序列也是观察者</h1><p><strong>AsyncSubject</strong> 将在源 <code>Observable</code> 产生完成事件后，发出最后一个元素（仅仅只有最后一个元素），如果源 <code>Observable</code> 没有发出任何元素，只有一个完成事件。那 <strong>AsyncSubject</strong> 也只有一个完成事件。</p>
+<p><strong>PublishSubject</strong> 将对观察者发送订阅后产生的元素，而在订阅前发出的元素将不会发送给观察者。如果你希望观察者接收到所有的元素，你可以通过使用 <code>Observable</code> 的 <code>create</code> 方法来创建 <code>Observable</code>，或者使用 <a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/rxswift_core/observable_and_observer/replay_subject.html" target="_blank" rel="noopener">ReplaySubject</a>。</p>
+<p><strong>ReplaySubject</strong> 将对观察者发送全部的元素，无论观察者是何时进行订阅的。</p>
+<p>这里存在多个版本的 <strong>ReplaySubject</strong>，有的只会将最新的 n 个元素发送给观察者，有的只会将限制时间段内最新的元素发送给观察者。</p>
+<p>如果把 <strong>ReplaySubject</strong> 当作观察者来使用，注意不要在多个线程调用 <code>onNext</code>, <code>onError</code> 或 <code>onCompleted</code>。这样会导致无序调用，将造成意想不到的结果。</p>
+<p>当观察者对 <strong>BehaviorSubject</strong> 进行订阅时，它会将源 <code>Observable</code> 中最新的元素发送出来（如果不存在最新的元素，就发出默认元素）。然后将随后产生的元素发送出来。</p>
+<p>在 <strong>Swift</strong> 中我们经常会用 <strong>var</strong> 关键字来声明变量。<strong>RxSwift</strong> 提供的 <strong>Variable</strong> 实际上是 <strong>var</strong> 的 <strong>Rx</strong> 版本，你可以将它看作是 <strong>RxVar。</strong></p>
+<p><strong>ControlProperty</strong> 专门用于描述 <strong>UI</strong> 控件属性的，它具有以下特征：</p>
+<ul>
+<li>不会产生 <code>error</code> 事件</li>
+<li>一定在 <code>MainScheduler</code> 订阅（主线程订阅）</li>
+<li>一定在 <code>MainScheduler</code> 监听（主线程监听）</li>
+<li>共享状态变化</li>
+</ul>
+<h1 id="Operatore-操作符"><a href="#Operatore-操作符" class="headerlink" title="Operatore 操作符"></a>Operatore 操作符</h1><h3 id="filter-过滤"><a href="#filter-过滤" class="headerlink" title="filter - 过滤"></a><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/filter.html" target="_blank" rel="noopener">filter</a> - 过滤</h3><h3 id="map-转换"><a href="#map-转换" class="headerlink" title="map - 转换"></a><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/map.html" target="_blank" rel="noopener">map</a> - 转换</h3><h3 id="zip-配对"><a href="#zip-配对" class="headerlink" title="zip - 配对"></a><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/zip.html" target="_blank" rel="noopener">zip</a> - 配对</h3><ul>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/amb.html" target="_blank" rel="noopener">amb</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/buffer.html" target="_blank" rel="noopener">buffer</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/catchError.html" target="_blank" rel="noopener">catchError</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/combineLatest.html" target="_blank" rel="noopener">combineLatest</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/concat.html" target="_blank" rel="noopener">concat</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/concatMap.html" target="_blank" rel="noopener">concatMap</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/connect.html" target="_blank" rel="noopener">connect</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/create.html" target="_blank" rel="noopener">create</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/debounce.html" target="_blank" rel="noopener">debounce</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/debug.html" target="_blank" rel="noopener">debug</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/deferred.html" target="_blank" rel="noopener">deferred</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/delay.html" target="_blank" rel="noopener">delay</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/delaySubscription.html" target="_blank" rel="noopener">delaySubscription</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/dematerialize.html" target="_blank" rel="noopener">dematerialize</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/distinctUntilChanged.html" target="_blank" rel="noopener">distinctUntilChanged</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/do.html" target="_blank" rel="noopener">do</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/elementAt.html" target="_blank" rel="noopener">elementAt</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/empty.html" target="_blank" rel="noopener">empty</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/error.html" target="_blank" rel="noopener">error</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/filter.html" target="_blank" rel="noopener">filter</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/flatMap.html" target="_blank" rel="noopener">flatMap</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/flatMapLatest.html" target="_blank" rel="noopener">flatMapLatest</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/from.html" target="_blank" rel="noopener">from</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/groupBy.html" target="_blank" rel="noopener">groupBy</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/ignoreElements.html" target="_blank" rel="noopener">ignoreElements</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/interval.html" target="_blank" rel="noopener">interval</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/just.html" target="_blank" rel="noopener">just</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/map.html" target="_blank" rel="noopener">map</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/merge.html" target="_blank" rel="noopener">merge</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/materialize.html" target="_blank" rel="noopener">materialize</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/never.html" target="_blank" rel="noopener">never</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/observeOn.html" target="_blank" rel="noopener">observeOn</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/publish.html" target="_blank" rel="noopener">publish</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/reduce.html" target="_blank" rel="noopener">reduce</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/refCount.html" target="_blank" rel="noopener">refCount</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/repeatElement.html" target="_blank" rel="noopener">repeatElement</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/replay.html" target="_blank" rel="noopener">replay</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/retry.html" target="_blank" rel="noopener">retry</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/sample.html" target="_blank" rel="noopener">sample</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/scan.html" target="_blank" rel="noopener">scan</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/shareReplay.html" target="_blank" rel="noopener">shareReplay</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/single.html" target="_blank" rel="noopener">single</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/skip.html" target="_blank" rel="noopener">skip</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/skipUntil.html" target="_blank" rel="noopener">skipUntil</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/skipWhile.html" target="_blank" rel="noopener">skipWhile</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/startWith.html" target="_blank" rel="noopener">startWith</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/subscribeOn.html" target="_blank" rel="noopener">subscribeOn</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/take.html" target="_blank" rel="noopener">take</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/takeLast.html" target="_blank" rel="noopener">takeLast</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/takeUntil.html" target="_blank" rel="noopener">takeUntil</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/takeWhile.html" target="_blank" rel="noopener">takeWhile</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/timeout.html" target="_blank" rel="noopener">timeout</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/timer.html" target="_blank" rel="noopener">timer</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/using.html" target="_blank" rel="noopener">using</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/window.html" target="_blank" rel="noopener">window</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/withLatestFrom.html" target="_blank" rel="noopener">withLatestFrom</a></li>
+<li><a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/zip.html" target="_blank" rel="noopener">zip</a></li>
+</ul>
+<h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><p><strong>我想要创建一个 Observable</strong></p>
+<ul>
+<li><p>产生特定的一个元素：</p>
+<p>just</p>
+<ul>
+<li>经过一段延时：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/timer.html" target="_blank" rel="noopener">timer</a></li>
+</ul>
+</li>
+<li><p>从一个序列拉取元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/from.html" target="_blank" rel="noopener">from</a></p>
+</li>
+<li><p>重复的产生某一个元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/repeatElement.html" target="_blank" rel="noopener">repeatElement</a></p>
+</li>
+<li><p>存在自定义逻辑：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/create.html" target="_blank" rel="noopener">create</a></p>
+</li>
+<li><p>每次订阅时产生：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/deferred.html" target="_blank" rel="noopener">deferred</a></p>
+</li>
+<li><p>每隔一段时间，发出一个元素：</p>
+<p>interval</p>
+<ul>
+<li>在一段延时后：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/timer.html" target="_blank" rel="noopener">timer</a></li>
+</ul>
+</li>
+<li><p>一个空序列，只有一个完成事件：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/empty.html" target="_blank" rel="noopener">empty</a></p>
+</li>
+<li><p>一个任何事件都没有产生的序列：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/never.html" target="_blank" rel="noopener">never</a></p>
+</li>
+</ul>
+<p><strong>我想要创建一个 Observable 通过组合其他的 Observables</strong></p>
+<ul>
+<li><p>任意一个 <code>Observable</code> 产生了元素，就发出这个元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/merge.html" target="_blank" rel="noopener">merge</a></p>
+</li>
+<li><p>让这些 <code>Observables</code> 一个接一个的发出元素，当上一个 <code>Observable</code> 元素发送完毕后，下一个<code>Observable</code> 才能开始发出元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/concat.html" target="_blank" rel="noopener">concat</a></p>
+</li>
+<li><p>组合多个</p>
+</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Observables</span><br></pre></td></tr></table></figure>
+<p>  的元素</p>
+<ul>
+<li>当每一个 <code>Observable</code> 都发出一个新的元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/zip.html" target="_blank" rel="noopener">zip</a></li>
+<li>当任意一个 <code>Observable</code> 发出一个新的元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/combineLatest.html" target="_blank" rel="noopener">combineLatest</a></li>
+</ul>
+<p><strong>我想要转换 Observable 的元素后，再将它们发出来</strong></p>
+<ul>
+<li><p>对每个元素直接转换：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/map.html" target="_blank" rel="noopener">map</a></p>
+</li>
+<li><p>转换到另一个</p>
+</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Observable</span><br></pre></td></tr></table></figure>
+<p>  ：</p>
+<p>  flatMap</p>
+<ul>
+<li>只接收最新的元素转换的 <code>Observable</code> 所产生的元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/flatMapLatest.html" target="_blank" rel="noopener">flatMapLatest</a></li>
+<li>每一个元素转换的 <code>Observable</code> 按顺序产生元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/concatMap.html" target="_blank" rel="noopener">concatMap</a></li>
+</ul>
+<ul>
+<li>基于所有遍历过的元素： <a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/scan.html" target="_blank" rel="noopener">scan</a></li>
+</ul>
+<p><strong>我想要将产生的每一个元素，拖延一段时间后再发出：delay</strong></p>
+<p><strong>我想要将产生的事件封装成元素发送出来</strong></p>
+<ul>
+<li>将他们封装成</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Event&lt;Element&gt;</span><br></pre></td></tr></table></figure>
+<p>  ：</p>
+<p>  materialize</p>
+<ul>
+<li>然后解封出来：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/dematerialize.html" target="_blank" rel="noopener">dematerialize</a></li>
+</ul>
+<p><strong>我想要忽略掉所有的 next 事件，只接收 completed 和 error 事件：ignoreElements</strong></p>
+<p><strong>我想创建一个新的 Observable 在原有的序列前面加入一些元素：startWith</strong></p>
+<p><strong>我想从 Observable 中收集元素，缓存这些元素之后在发出：buffer</strong></p>
+<p><strong>我想将 Observable 拆分成多个 Observables：window</strong></p>
+<ul>
+<li>基于元素的共同特征：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/groupBy.html" target="_blank" rel="noopener">groupBy</a></li>
+</ul>
+<p><strong>我想只接收 Observable 中特定的元素</strong></p>
+<ul>
+<li>发出唯一的元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/single.html" target="_blank" rel="noopener">single</a></li>
+</ul>
+<p><strong>我想重新从 Observable 中发出某些元素</strong></p>
+<ul>
+<li><p>通过判定条件过滤出一些元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/filter.html" target="_blank" rel="noopener">filter</a></p>
+</li>
+<li><p>仅仅发出头几个元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/take.html" target="_blank" rel="noopener">take</a></p>
+</li>
+<li><p>仅仅发出尾部的几个元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/takeLast.html" target="_blank" rel="noopener">takeLast</a></p>
+</li>
+<li><p>仅仅发出第 n 个元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/elementAt.html" target="_blank" rel="noopener">elementAt</a></p>
+</li>
+<li><p>跳过头几个元素</p>
+<ul>
+<li>跳过头 n 个元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/skip.html" target="_blank" rel="noopener">skip</a></li>
+<li>跳过头几个满足判定的元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/skipWhile.html" target="_blank" rel="noopener">skipWhile</a>，<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/skipWhile.html" target="_blank" rel="noopener">skipWhileWithIndex</a></li>
+<li>跳过某段时间内产生的头几个元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/skip.html" target="_blank" rel="noopener">skip</a></li>
+<li>跳过头几个元素直到另一个 <code>Observable</code> 发出一个元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/skipUntil.html" target="_blank" rel="noopener">skipUntil</a></li>
+</ul>
+</li>
+<li><p>只取头几个元素</p>
+<ul>
+<li>只取头几个满足判定的元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/takeWhile.html" target="_blank" rel="noopener">takeWhile</a>，<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/takeWhile.html" target="_blank" rel="noopener">takeWhileWithIndex</a></li>
+<li>只取某段时间内产生的头几个元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/take.html" target="_blank" rel="noopener">take</a></li>
+<li>只取头几个元素直到另一个 <code>Observable</code> 发出一个元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/takeUntil.html" target="_blank" rel="noopener">takeUntil</a></li>
+</ul>
+</li>
+<li><p>周期性的对 <code>Observable</code> 抽样：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/sample.html" target="_blank" rel="noopener">sample</a></p>
+</li>
+<li><p>发出那些元素，这些元素产生后的特定的时间内，没有新的元素产生：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/debounce.html" target="_blank" rel="noopener">debounce</a></p>
+</li>
+<li><p>直到元素的值发生变化，才发出新的元素：</p>
+<p>distinctUntilChanged</p>
+<ul>
+<li>并提供元素是否相等的判定函数：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/distinctUntilChanged.html" target="_blank" rel="noopener">distinctUntilChanged</a></li>
+</ul>
+</li>
+<li><p>在开始发出元素时，延时后进行订阅：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/delaySubscription.html" target="_blank" rel="noopener">delaySubscription</a></p>
+</li>
+</ul>
+<p><strong>我想要从一些 Observables 中，只取第一个产生元素的 Observable：amb</strong></p>
+<p><strong>我想评估 Observable 的全部元素</strong></p>
+<ul>
+<li>并且对每个元素应用聚合方法，待所有元素都应用聚合方法后，发出结果：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/reduce.html" target="_blank" rel="noopener">reduce</a></li>
+<li>并且对每个元素应用聚合方法，每次应用聚合方法后，发出结果：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/scan.html" target="_blank" rel="noopener">scan</a></li>
+</ul>
+<p><strong>我想把 Observable 转换为其他的数据结构：as…</strong></p>
+<p><strong>我想在某个 Scheduler 应用操作符：subscribeOn</strong></p>
+<ul>
+<li>在某个 <a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/rxswift_core/schedulers.html" target="_blank" rel="noopener">Scheduler</a> 监听：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/observeOn.html" target="_blank" rel="noopener">observeOn</a></li>
+</ul>
+<p><strong>我想要 Observable 发生某个事件时, 采取某个行动：do</strong></p>
+<p><strong>我想要 Observable 发出一个 error 事件：error</strong></p>
+<ul>
+<li>如果规定时间内没有产生元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/timeout.html" target="_blank" rel="noopener">timeout</a></li>
+</ul>
+<p><strong>我想要 Observable 发生错误时，优雅的恢复</strong></p>
+<ul>
+<li>如果规定时间内没有产生元素，就切换到备选 <code>Observable</code> ：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/timeout.html" target="_blank" rel="noopener">timeout</a></li>
+<li>如果产生错误，将错误替换成某个元素 ：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/catchError.html" target="_blank" rel="noopener">catchErrorJustReturn</a></li>
+<li>如果产生错误，就切换到备选 <code>Observable</code> ：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/catchError.html" target="_blank" rel="noopener">catchError</a></li>
+<li>如果产生错误，就重试 ：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/retry.html" target="_blank" rel="noopener">retry</a></li>
+</ul>
+<p><strong>我创建一个 Disposable 资源，使它与 Observable 具有相同的寿命：using</strong></p>
+<p><strong>我创建一个 Observable，直到我通知它可以产生元素后，才能产生元素：publish</strong></p>
+<ul>
+<li>并且，就算是在产生元素后订阅，也要发出全部元素：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/replay.html" target="_blank" rel="noopener">replay</a></li>
+<li>并且，一旦所有观察者取消观察，他就被释放掉：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/refCount.html" target="_blank" rel="noopener">refCount</a></li>
+<li>通知它可以产生元素了：<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/connect.html" target="_blank" rel="noopener">connect</a></li>
+</ul>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/headicon.jpeg" alt="geeklyc">
+            
+              <p class="site-author-name" itemprop="name">geeklyc</p>
+              <p class="site-description motion-element" itemprop="description">geeklyc</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Observable-可被监听的序列"><span class="nav-number">1.</span> <span class="nav-text">Observable - 可被监听的序列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Observer-观察者"><span class="nav-number">2.</span> <span class="nav-text">Observer - 观察者</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Observable-amp-Observer-既是可被监听的序列也是观察者"><span class="nav-number">3.</span> <span class="nav-text">Observable &amp; Observer 既是可被监听的序列也是观察者</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operatore-操作符"><span class="nav-number">4.</span> <span class="nav-text">Operatore 操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#filter-过滤"><span class="nav-number">4.0.1.</span> <span class="nav-text">filter - 过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-转换"><span class="nav-number">4.0.2.</span> <span class="nav-text">map - 转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip-配对"><span class="nav-number">4.0.3.</span> <span class="nav-text">zip - 配对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树"><span class="nav-number">4.0.4.</span> <span class="nav-text">决策树</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">geeklyc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'piUf1dhjji5IyYAjLpwdW2lV-gzGzoHsz',
+        appKey: 'TNDtJ6nYf05B6vdrsrllI5QO',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

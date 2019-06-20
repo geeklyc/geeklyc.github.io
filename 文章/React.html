@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="geeklyc">
+<meta name="description" content="React 元素渲染 元素1const element = &amp;lt;h1&amp;gt;Hello, world&amp;lt;/h1&amp;gt;; 元素渲染到DOM中1&amp;lt;div id=&amp;quot;root&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; 我们用React 开发应用时一般只会定义一个根节点。但如果你是在一个已有的项目当中引入 React 的话，你可能会需要在不同的部分单独定义 React 根节点。">
 <meta name="keywords" content="geeklyc">
 <meta property="og:type" content="website">
 <meta property="og:title" content="geeklyc">
-<meta property="og:url" content="http://yoursite.com/categories/工具/index.html">
+<meta property="og:url" content="http://yoursite.com/文章/React.html">
 <meta property="og:site_name" content="geeklyc">
-<meta property="og:description" content="geeklyc">
+<meta property="og:description" content="React 元素渲染 元素1const element = &amp;lt;h1&amp;gt;Hello, world&amp;lt;/h1&amp;gt;; 元素渲染到DOM中1&amp;lt;div id=&amp;quot;root&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; 我们用React 开发应用时一般只会定义一个根节点。但如果你是在一个已有的项目当中引入 React 的话，你可能会需要在不同的部分单独定义 React 根节点。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-19T10:01:44.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="geeklyc">
-<meta name="twitter:description" content="geeklyc">
+<meta name="twitter:description" content="React 元素渲染 元素1const element = &amp;lt;h1&amp;gt;Hello, world&amp;lt;/h1&amp;gt;; 元素渲染到DOM中1&amp;lt;div id=&amp;quot;root&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; 我们用React 开发应用时一般只会定义一个根节点。但如果你是在一个已有的项目当中引入 React 的话，你可能会需要在不同的部分单独定义 React 根节点。">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/工具/">
+  <link rel="canonical" href="http://yoursite.com/文章/React.html">
 
 
 
 
 
-  <title>Category: 工具 | geeklyc</title>
+  <title> | geeklyc</title>
   
 
 
@@ -154,7 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,53 +259,42 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>工具<small>Category</small>
-        </h1>
-      </div>
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
 
       
+      
+      
+      <div class="post-body">
         
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/03/08/建立博客/" itemprop="url">
-              
-                <span itemprop="name">Hexo搭建个人博客</span>
-              
-            </a>
+          <p>React</p>
+<p>元素渲染</p>
+<h3 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const element = &lt;h1&gt;Hello, world&lt;/h1&gt;;</span><br></pre></td></tr></table></figure>
+<h3 id="元素渲染到DOM中"><a href="#元素渲染到DOM中" class="headerlink" title="元素渲染到DOM中"></a>元素渲染到DOM中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>我们用React 开发应用时一般只会定义一个根节点。但如果你是在一个已有的项目当中引入 React 的话，你可能会需要在不同的部分单独定义 React 根节点。</p>
+<h3 id="更新元素渲染"><a href="#更新元素渲染" class="headerlink" title="更新元素渲染"></a>更新元素渲染</h3><p>React 元素都是immutable 不可变的<br>方式一：创建一个新的元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function tick() &#123;</span><br><span class="line">    const element = (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;Hello&lt;/h1&gt;</span><br><span class="line">            &lt;h2&gt;It &#123;new Date().toLocaleTimeString() &#125;&lt;/h2&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    ReactDOM.render(</span><br><span class="line">        element,</span><br><span class="line">        document.getElementById(&apos;root&apos;)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line">setInterval(tick, 1000);</span><br></pre></td></tr></table></figure></p>
+<h3 id="React-只会更新必要的部分"><a href="#React-只会更新必要的部分" class="headerlink" title="React 只会更新必要的部分"></a>React 只会更新必要的部分</h3>
         
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-08T10:01:45+08:00" content="2019-03-08">
-          03-08
-        </time>
       </div>
-
-    </header>
-  </article>
-
-
+      
+      
       
     </div>
-
+    
+    
+    
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -312,6 +302,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -332,8 +329,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -395,6 +401,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#元素"><span class="nav-number">1.</span> <span class="nav-text">元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元素渲染到DOM中"><span class="nav-number">2.</span> <span class="nav-text">元素渲染到DOM中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新元素渲染"><span class="nav-number">3.</span> <span class="nav-text">更新元素渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-只会更新必要的部分"><span class="nav-number">4.</span> <span class="nav-text">React 只会更新必要的部分</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -535,6 +557,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
