@@ -691,114 +691,15 @@
 
       
         
-          
-            <h1 id="本地操作"><a href="#本地操作" class="headerlink" title="本地操作"></a>本地操作</h1><h5 id="当前目录变成仓库"><a href="#当前目录变成仓库" class="headerlink" title="当前目录变成仓库"></a>当前目录变成仓库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+          <h1 id="本地操作"><a href="#本地操作" class="headerlink" title="本地操作"></a>本地操作</h1><h5 id="当前目录变成仓库"><a href="#当前目录变成仓库" class="headerlink" title="当前目录变成仓库"></a>当前目录变成仓库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 <h5 id="添加文件到仓库-暂存区"><a href="#添加文件到仓库-暂存区" class="headerlink" title="添加文件到仓库(暂存区)"></a>添加文件到仓库(暂存区)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add readme.text</span><br></pre></td></tr></table></figure>
-<h5 id="提交文件到仓库"><a href="#提交文件到仓库" class="headerlink" title="提交文件到仓库"></a>提交文件到仓库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;&quot;</span><br></pre></td></tr></table></figure>
-<h5 id="查看当前仓库状态"><a href="#查看当前仓库状态" class="headerlink" title="查看当前仓库状态"></a>查看当前仓库状态</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-<h5 id="查看仓库变化的内容"><a href="#查看仓库变化的内容" class="headerlink" title="查看仓库变化的内容"></a>查看仓库变化的内容</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br><span class="line">git diff HEAD -- readme.txt</span><br></pre></td></tr></table></figure>
-<h5 id="查询仓库的提交历史"><a href="#查询仓库的提交历史" class="headerlink" title="查询仓库的提交历史"></a>查询仓库的提交历史</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git log </span><br><span class="line">git log --pretty=oneline</span><br></pre></td></tr></table></figure>
-<h5 id="仓库版本回退"><a href="#仓库版本回退" class="headerlink" title="仓库版本回退"></a>仓库版本回退</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br><span class="line">git reset --hard 1094a</span><br></pre></td></tr></table></figure>
-<h5 id="查询仓库命令历史"><a href="#查询仓库命令历史" class="headerlink" title="查询仓库命令历史"></a>查询仓库命令历史</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
-<h5 id="文件回到最近一次状态"><a href="#文件回到最近一次状态" class="headerlink" title="文件回到最近一次状态"></a>文件回到最近一次状态</h5><ul>
-<li>未添加到暂存区</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- readme.txt</span><br></pre></td></tr></table></figure>
-<ul>
-<li>已经添加到暂存区，暂存区的修改回到工作区</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD readme.txt</span><br></pre></td></tr></table></figure>
-<ul>
-<li>已经提交仓库</li>
-</ul>
-<p>执行版本回退</p>
-<h5 id="删除仓库一个文件"><a href="#删除仓库一个文件" class="headerlink" title="删除仓库一个文件"></a>删除仓库一个文件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm readme.txt</span><br></pre></td></tr></table></figure>
-<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><h5 id="本地仓库与远程仓库关联"><a href="#本地仓库与远程仓库关联" class="headerlink" title="本地仓库与远程仓库关联"></a>本地仓库与远程仓库关联</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:geeklyc/Algorithm.git</span><br></pre></td></tr></table></figure>
-<h5 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-<h5 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:geeklyc/Algorithm.git</span><br></pre></td></tr></table></figure>
-<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h5 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
-<h5 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch dev</span><br></pre></td></tr></table></figure>
-<h5 id="创建-切换"><a href="#创建-切换" class="headerlink" title="创建+切换"></a>创建+切换</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
-<h5 id="查看当前分支·"><a href="#查看当前分支·" class="headerlink" title="查看当前分支·"></a>查看当前分支·</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
-<h5 id="合并分支-快进模式"><a href="#合并分支-快进模式" class="headerlink" title="合并分支(快进模式)"></a>合并分支(快进模式)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
-<h5 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d dev</span><br></pre></td></tr></table></figure>
-<h5 id="查看分支合并情况"><a href="#查看分支合并情况" class="headerlink" title="查看分支合并情况"></a>查看分支合并情况</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --graph --pretty=oneline --abbrev-commit</span><br></pre></td></tr></table></figure>
-<h5 id="分支合并图"><a href="#分支合并图" class="headerlink" title="分支合并图"></a>分支合并图</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --graph</span><br></pre></td></tr></table></figure>
-<h5 id="合并分支-禁用快进模式"><a href="#合并分支-禁用快进模式" class="headerlink" title="合并分支(禁用快进模式)"></a>合并分支(禁用快进模式)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff -m &quot;merge with no-ff&quot; dev</span><br></pre></td></tr></table></figure>
-<h5 id="暂存"><a href="#暂存" class="headerlink" title="暂存"></a>暂存</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
-<h5 id="查看暂存"><a href="#查看暂存" class="headerlink" title="查看暂存"></a>查看暂存</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash list</span><br></pre></td></tr></table></figure>
-<h5 id="暂存恢复到工作区"><a href="#暂存恢复到工作区" class="headerlink" title="暂存恢复到工作区"></a>暂存恢复到工作区</h5><ul>
-<li>方式一</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git stash apply</span><br><span class="line">git stash drop</span><br><span class="line"></span><br><span class="line">git stash apply stash@&#123;0&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方式二</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
-<p>强行删除未合并的分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D feature-vulcan</span><br></pre></td></tr></table></figure>
-<h5 id="查看远程仓库"><a href="#查看远程仓库" class="headerlink" title="查看远程仓库"></a>查看远程仓库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-<h5 id="从远程开一个本地分支"><a href="#从远程开一个本地分支" class="headerlink" title="从远程开一个本地分支"></a>从远程开一个本地分支</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev origin/dev</span><br></pre></td></tr></table></figure>
-<h5 id="设置本地分支与远程分支的连接"><a href="#设置本地分支与远程分支的连接" class="headerlink" title="设置本地分支与远程分支的连接"></a>设置本地分支与远程分支的连接</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/dev dev</span><br></pre></td></tr></table></figure>
-<h5 id="变基"><a href="#变基" class="headerlink" title="变基"></a>变基</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase</span><br></pre></td></tr></table></figure>
-<h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><h5 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a>打标签</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git tag v1.0</span><br><span class="line">git tag v0.9 f52c633</span><br><span class="line">git tag -a v0.1 -m &quot;version 0.1 released&quot; 1094adb</span><br></pre></td></tr></table></figure>
-<h5 id="查看标签"><a href="#查看标签" class="headerlink" title="查看标签"></a>查看标签</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git tag</span><br><span class="line">git show v0.9</span><br></pre></td></tr></table></figure>
-<h5 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -d v0.1</span><br></pre></td></tr></table></figure>
-<h5 id="推送标签"><a href="#推送标签" class="headerlink" title="推送标签"></a>推送标签</h5><ul>
-<li>标签未推送到远程删除</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push origin v1.0</span><br><span class="line">git push origin --tags</span><br></pre></td></tr></table></figure>
-<ul>
-<li>标签已经推送到远程删除</li>
-</ul>
-<p>先本地删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -d v0.9</span><br></pre></td></tr></table></figure>
-<p>删除标签</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin :refs/tags/v0.9</span><br></pre></td></tr></table></figure>
-<h5 id="关联多个远程"><a href="#关联多个远程" class="headerlink" title="关联多个远程"></a>关联多个远程</h5><ul>
-<li>移除远程仓库</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
-<ul>
-<li>关联远程</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add github git@github.com:geeklyc/Algorithm.git</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add gitee git@gitee.com:geeklyc/Algorithm.git</span><br></pre></td></tr></table></figure>
-<ul>
-<li>推送指定</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push github master</span><br><span class="line">git push gitee master</span><br></pre></td></tr></table></figure>
-<h1 id="自定义git"><a href="#自定义git" class="headerlink" title="自定义git"></a>自定义git</h1><h5 id="配置git显示颜色"><a href="#配置git显示颜色" class="headerlink" title="配置git显示颜色"></a>配置git显示颜色</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global color.ui true</span><br></pre></td></tr></table></figure>
-<h5 id="配置用户名和邮箱"><a href="#配置用户名和邮箱" class="headerlink" title="配置用户名和邮箱"></a>配置用户名和邮箱</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;Your Name&quot;</span><br><span class="line">$ git config --global user.email &quot;email@example.com&quot;</span><br></pre></td></tr></table></figure>
-<h5 id="配置-gitignore-文件"><a href="#配置-gitignore-文件" class="headerlink" title="配置.gitignore`文件"></a>配置.gitignore`文件</h5><p><a href="https://github.com/github/gitignore" target="_blank" rel="noopener">参考此配置</a></p>
-<h5 id="配置别名"><a href="#配置别名" class="headerlink" title="配置别名"></a>配置别名</h5><ul>
-<li><p>查看状态 <code>git st</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">it config --global alias.st status</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看提交历史 <code>git lg</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.lg &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>切换分支 <code>git co dev</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.co checkout</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>提交 <code>git ci -m &quot;&quot;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.ci commit</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看分支 <code>git br</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.br branch</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>撤销暂存 <code>git unstage test.py</code> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.unstage &apos;reset HEAD&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>最后一次提交 <code>git last</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.last &apos;log -1&apos;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><h5 id="生成sshkey"><a href="#生成sshkey" class="headerlink" title="生成sshkey"></a>生成sshkey</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</span><br></pre></td></tr></table></figure>
-<h5 id="拷贝sshkey"><a href="#拷贝sshkey" class="headerlink" title="拷贝sshkey"></a>拷贝sshkey</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pbcopy &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://git-scm.com/" target="_blank" rel="noopener">git官网</a><br><a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">git教程</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/git/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
